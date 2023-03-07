@@ -1,0 +1,9 @@
+POST http://localhost:5000/api/wilder
+Content-Type: application/json
+
+{
+    "name": "REST Client Wilder 2"
+}
+
+###
+GET http://localhost:5000/api/wilder
