@@ -7,3 +7,14 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/wilder
+
+###
+DELETE http://localhost:5000/api/wilder/3
+
+###
+PUT http://localhost:5000/api/wilder/2
+Content-Type: application/json
+
+{
+    "name": "Alice"
+}

@@ -12,6 +12,8 @@ app.get("/", (req, res) => {
 
 app.post("/api/wilder", wildercontroller.create);
 app.get("/api/wilder", wildercontroller.read);
+app.delete("/api/wilder/:id", wildercontroller.delete);
+app.put("/api/wilder/:id", wildercontroller.update);
 
 const start = async () => {
   await dataSource.initialize();

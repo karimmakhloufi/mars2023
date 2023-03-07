@@ -23,4 +23,24 @@ module.exports = {
       res.send("Error while reading the wilders");
     }
   },
+  delete: async (req, res) => {
+    try {
+      await dataSource.getRepository(Wilder).delete(req.params.id);
+      res.send("Wilder deleted");
+    } catch (err) {
+      console.log(err);
+      res.send("Error while deleting the wilder");
+    }
+  },
+  update: async (req, res) => {
+    try {
+      const updateResult = await dataSource
+        .getRepository(Wilder)
+        .update(req.params.id, req.body);
+      res.send(updateResult);
+    } catch (err) {
+      console.log(err);
+      res.send("Error while updating");
+    }
+  },
 };
