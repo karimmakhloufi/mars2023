@@ -2,19 +2,19 @@ POST http://localhost:5000/api/skill
 Content-Type: application/json
 
 {
-    "name": "REST Skill"
+    "name": "JS"
 }
 
 ###
 GET http://localhost:5000/api/skill
 
 ###
-DELETE http://localhost:5000/api/skill/3
+DELETE http://localhost:5000/api/skill/1
 
 ###
 PUT http://localhost:5000/api/skill/2
 Content-Type: application/json
 
 {
-    "name": "Alice"
+    "name": "Ruby"
 }
