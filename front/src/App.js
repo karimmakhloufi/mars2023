@@ -3,6 +3,7 @@ import axios from "axios";
 import "./App.css";
 import Wilder from "./components/Wilder";
 import AddWilderForm from "./components/AddWilderForm";
+import AddSkillToWilderForm from "./components/AddSkillToWilderForm";
 
 const App = () => {
   const [wilders, setWilders] = useState([]);
@@ -23,11 +24,13 @@ const App = () => {
       </header>
       <main className="container">
         <AddWilderForm />
+        <AddSkillToWilderForm />
         <h2>Wilders</h2>
         <section className="card-row">
           {wilders.map((wilder) => {
             return (
               <Wilder
+                key={wilder.id}
                 name={wilder.name}
                 skills={wilder.skills}
                 id={wilder.id}
