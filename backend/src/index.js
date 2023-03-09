@@ -24,7 +24,7 @@ app.get("/api/skill", skillcontroller.read);
 app.delete("/api/skill/:id", skillcontroller.delete);
 app.put("/api/skill/:id", skillcontroller.update);
 
-app.put("/api/addskill", wildercontroller.addSkill);
+app.put("/api/addskills", wildercontroller.addSkills);
 
 const start = async () => {
   await dataSource.initialize();

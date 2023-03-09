@@ -1,6 +1,7 @@
 const Wilder = require("../entity/Wilder");
 const Skill = require("../entity/Skill");
 const dataSource = require("../utils").dataSource;
+const In = require("typeorm").In;
 
 module.exports = {
   create: (req, res) => {
@@ -46,18 +47,18 @@ module.exports = {
       res.send("Error while updating");
     }
   },
-  addSkill: async (req, res) => {
-    console.log("addskill controller");
+  addSkills: async (req, res) => {
+    console.log("addskills controller");
     try {
       const wilderToUpdate = await dataSource
         .getRepository(Wilder)
         .findOneByOrFail({ name: req.body.wildername });
       console.log("wilder", wilderToUpdate);
-      const skillToAdd = await dataSource
+      const skillsToAdd = await dataSource
         .getRepository(Skill)
-        .findOneByOrFail({ name: req.body.skillname });
-      console.log("Skill", skillToAdd);
-      wilderToUpdate.skills.push(skillToAdd);
+        .findBy({ name: In(req.body.skillname) });
+      console.log("Skills", skillsToAdd);
+      wilderToUpdate.skills = [...wilderToUpdate.skills, ...skillsToAdd];
       console.log("updated wilder", wilderToUpdate);
       await dataSource.getRepository(Wilder).save(wilderToUpdate);
       res.send("Wilder updated");

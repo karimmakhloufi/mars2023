@@ -5,7 +5,7 @@ const AddSkillToWilderForm = () => {
   const [skills, setSkills] = useState([]);
   const [wilders, setWilders] = useState([]);
   const [selectedWilder, setSelectedWilder] = useState("");
-  const [selectedSkill, setSelectedSkill] = useState("");
+  const [selectedSkills, setSelectedSkills] = useState([]);
   useEffect(() => {
     const fetchWilders = async () => {
       const result = await axios.get("http://localhost:5000/api/wilder");
@@ -24,10 +24,10 @@ const AddSkillToWilderForm = () => {
       onSubmit={(e) => {
         e.preventDefault();
         console.log("selectedWilder", selectedWilder);
-        console.log("selected skill", selectedSkill);
-        axios.put("http://localhost:5000/api/addskill", {
+        console.log("selected skills", selectedSkills);
+        axios.put("http://localhost:5000/api/addskills", {
           wildername: selectedWilder,
-          skillname: selectedSkill,
+          skillname: selectedSkills,
         });
       }}
     >
@@ -49,9 +49,12 @@ const AddSkillToWilderForm = () => {
       </select>
       <select
         onChange={(e) => {
-          setSelectedSkill(e.target.value);
+          setSelectedSkills(
+            Array.from(e.target.selectedOptions).map((el) => el.value)
+          );
         }}
-        defaultValue={"disabled"}
+        defaultValue={["disabled"]}
+        multiple
       >
         <option value="disabled" disabled>
           Select a skill
