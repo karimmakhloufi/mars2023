@@ -17,7 +17,9 @@ module.exports = {
   },
   read: async (req, res) => {
     try {
-      const allWilders = await dataSource.getRepository(Wilder).find();
+      const allWilders = await dataSource
+        .getRepository(Wilder)
+        .find({ order: { id: "DESC" } });
       res.send(allWilders);
     } catch (err) {
       console.log(err);

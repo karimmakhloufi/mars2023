@@ -1,10 +1,11 @@
 const express = require("express");
+const cors = require("cors");
 const dataSource = require("./utils").dataSource;
 const wildercontroller = require("./controller/WilderController");
 const skillcontroller = require("./controller/SkillController");
 
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
